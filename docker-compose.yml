@@ -6,12 +6,30 @@ services:
     container_name: mongo_logs
     ports:
       - "27017:27017"
+    restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - mongo_data:/data/db
+    networks:
+      - siem-network
+
+  producer:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.producer
+    environment:
+      - MONGO_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/?authSource=admin
+      - DB_NAME=${DB_NAME}
+      - COLLECTION_NAME=${COLLECTION_NAME}
+    depends_on:
+      - mongo
+    networks:
+      - siem-network
 
 volumes:
   mongo_data:
 
+networks:
+  siem-network:
