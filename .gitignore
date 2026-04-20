@@ -1,5 +1,14 @@
+# Entorno y Secretos
 .env
 .venv/
+
+# Python
 __pycache__/
 *.pyc
-.gitignore
+
+# Datos
+*.csv
+
+# Editores
+.vscode/
+.DS_Store
