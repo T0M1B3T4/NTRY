@@ -15,35 +15,36 @@ from generar_logs import generar_log
 print("🔥 INICIANDO PRODUCER 🔥")
 
 load_dotenv()
+print(f"DEBUG: El MONGO_URI cargado es -> '{os.getenv('MONGO_URI')}'")
 
-MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("DB_NAME", "logs_db")
-COLLECTION_NAME = os.getenv("COLLECTION_NAME", "eventos")
+# MONGO_URI = os.getenv("MONGO_URI")
+# DB_NAME = os.getenv("DB_NAME", "logs_db")
+# COLLECTION_NAME = os.getenv("COLLECTION_NAME", "eventos")
 
-client = MongoClient(MONGO_URI)
-db = client[DB_NAME]
-collection = db[COLLECTION_NAME]
+# client = MongoClient(MONGO_URI)
+# db = client[DB_NAME]
+# collection = db[COLLECTION_NAME]
 
-def enviar_log(log):
-    log["timestamp"] = log["timestamp"].isoformat()
-    collection.insert_one(log)
+# def enviar_log(log):
+#     log["timestamp"] = log["timestamp"].isoformat()
+#     collection.insert_one(log)
 
-def run_stream(rate_per_sec=5):
-    delay = 1 / rate_per_sec
+# def run_stream(rate_per_sec=5):
+#     delay = 1 / rate_per_sec
 
-    while True:
-        tipo = random.choices(
-            ["normal", "brute_force", "flood"],
-            weights=[0.7, 0.2, 0.1]
-        )[0]
+#     while True:
+#         tipo = random.choices(
+#             ["normal", "brute_force", "flood"],
+#             weights=[0.7, 0.2, 0.1]
+#         )[0]
 
-        log = generar_log(tipo)
+#         log = generar_log(tipo)
 
-        enviar_log(log)
+#         enviar_log(log)
 
-        print(f"[{datetime.now()}] → {tipo}")
+#         print(f"[{datetime.now()}] → {tipo}")
 
-        time.sleep(delay)
+#         time.sleep(delay)
 
-if __name__ == "__main__":
-    run_stream()
+# if __name__ == "__main__":
+#     run_stream()

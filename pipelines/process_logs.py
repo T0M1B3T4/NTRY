@@ -34,4 +34,3 @@ grouped["requests"] = df.groupby(["ip", "minute"]).size()
 grouped["error_rate"] = grouped["failed_requests"] / grouped["requests"]
 
 print(grouped.head())
-print(grouped.tail())
