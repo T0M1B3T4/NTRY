@@ -133,5 +133,50 @@
                 "support": 49.0
             }
         }
+    },
+    "model_v4": {
+        "model_type": "LogisticRegression",
+        "date": "2026-04-23T02:49:49.221797",
+        "f1_score": 0.8391713747645951,
+        "features": [
+            "failed_requests",
+            "avg_response_time",
+            "total_attempts",
+            "requests",
+            "error_rate"
+        ],
+        "metrics": {
+            "brute_force": {
+                "precision": 0.625,
+                "recall": 0.29411764705882354,
+                "f1-score": 0.4,
+                "support": 17.0
+            },
+            "flood": {
+                "precision": 0.8571428571428571,
+                "recall": 0.8571428571428571,
+                "f1-score": 0.8571428571428571,
+                "support": 7.0
+            },
+            "normal": {
+                "precision": 0.8817204301075269,
+                "recall": 0.9761904761904762,
+                "f1-score": 0.9265536723163842,
+                "support": 84.0
+            },
+            "accuracy": 0.8611111111111112,
+            "macro avg": {
+                "precision": 0.7879544290834614,
+                "recall": 0.7091503267973857,
+                "f1-score": 0.7278988431530804,
+                "support": 108.0
+            },
+            "weighted avg": {
+                "precision": 0.8397177419354839,
+                "recall": 0.8611111111111112,
+                "f1-score": 0.8391713747645951,
+                "support": 108.0
+            }
+        }
     }
 }

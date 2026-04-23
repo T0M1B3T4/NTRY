@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # Importa tu generador
 from pipelines.generar_logs import generar_log  
 
-print("🔥 INICIANDO PRODUCER 🔥")
+print("🔥 INICIANDO PRODUCTOR 🔥")
 
 load_dotenv()
 
