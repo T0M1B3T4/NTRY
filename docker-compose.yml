@@ -21,6 +21,24 @@ services:
 
     command: tail -f /dev/null
 
+  backend:
+    container_name: backend-lab
+
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./backend:/app
+
+    networks:
+      - cyberlab_net
+
+    ports:
+      - "8000:8000"
+
+    restart: unless-stopped
+
 networks:
   cyberlab_net:
     driver: bridge
