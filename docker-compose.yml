@@ -1,0 +1,26 @@
+services:
+  attacker:
+    container_name: attacker-lab
+
+    build:
+      context: ./attacker
+      dockerfile: Dockerfile
+
+    working_dir: /app
+
+    volumes:
+      - ./attacker:/app
+
+    networks:
+      - cyberlab_net
+
+    stdin_open: true
+    tty: true
+
+    restart: unless-stopped
+
+    command: tail -f /dev/null
+
+networks:
+  cyberlab_net:
+    driver: bridge
