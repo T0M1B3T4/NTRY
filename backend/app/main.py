@@ -29,8 +29,8 @@ async def login(data: LoginRequest, request: Request):
         "success": False
     }
 
-    with open("login_logs.jsonl", "a") as file:
-        file.write(json.dumps(log_event))
+    with open("login_logs.json", "a") as file:
+           file.write(json.dumps(log_event) + "\n"),
 
     return {
         "message": "Login processed",
