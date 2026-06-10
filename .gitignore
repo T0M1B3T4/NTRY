@@ -1,1 +1,26 @@
-**__pycache__/**
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+/backend/login_logs.jsonl
+
+# VS Code
+.vscode/
+/monitor/captures/traffic.pcap
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store

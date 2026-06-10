@@ -40,6 +40,21 @@ services:
 
     restart: unless-stopped
 
+  monitor :
+    container_name: monitor-lab
+
+    build:
+      context: ./monitor
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./monitor/captures:/captures
+
+    networks:
+      - cyberlab_net
+
+    restart: unless-stopped
+
 networks:
   cyberlab_net:
     driver: bridge
