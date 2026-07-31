@@ -30,7 +30,7 @@ services:
       dockerfile: Dockerfile
 
     volumes:
-      - ./backend:/app
+      - ./data:/data
 
     networks:
       - cyberlab_net
@@ -58,6 +58,37 @@ services:
       - NET_RAW
 
     restart: unless-stopped
+
+  etl:
+    container_name: etl-lab
+
+    build:
+      context: ./ETL
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./data:/data
+
+    networks:
+      - cyberlab_net
+    
+  MongoDB:
+    container_name: mongodb-lab
+
+    image: mongo:latest
+
+    volumes:
+      - mongodb_data:/data/db
+
+    networks:
+      - cyberlab_net
+
+    ports:
+      - "27017:27017"
+
+    restart: unless-stopped
+volumes:
+    mongodb_data:
 
 networks:
   cyberlab_net:
