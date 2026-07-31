@@ -11,9 +11,13 @@ venv/
 # Environment variables
 .env
 
-# Logs
+# Logs & Data
 *.log
-/backend/login_logs.jsonl
+/data/raw/login_logs.jsonl
+/data/processed/dataset.csv
+/data
+/attacker/passwords.txt
+/attacker/users.txt
 
 # VS Code
 .vscode/
