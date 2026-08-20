@@ -12,7 +12,19 @@ with DAG(
     tags=["ntry", "etl", "cybersecurity"],
 ) as dag:
 
-    run_etl = BashOperator(
-        task_id="run_etl",
+    extract = BashOperator(
+        task_id="extract",
+        bash_command="echo 'Extract: validando archivo de entrada'",
+    )
+
+    transform = BashOperator(
+        task_id="transform",
+        bash_command="echo 'Transform: preparando datos'",
+    )
+
+    load = BashOperator(
+        task_id="load",
         bash_command="python /opt/airflow/ETL/parse_logs.py",
     )
+
+    extract >> transform >> load

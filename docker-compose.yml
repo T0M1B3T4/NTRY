@@ -1,5 +1,7 @@
 x-airflow-common: &airflow-common
-    image: apache/airflow:2.10.0
+    build:
+      context: ./airflow
+      dockerfile: Dockerfile
 
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
