@@ -11,17 +11,24 @@ venv/
 # Environment variables
 .env
 
-# Logs & Data
+# Generated data
+data/raw/*.jsonl
+data/processed/*.csv
+data/mongodb/
+
+# Logs
 *.log
-/data/raw/login_logs.jsonl
-/data/processed/dataset.csv
-/data
-/attacker/passwords.txt
-/attacker/users.txt
+
+# Attack dictionaries
+attacker/passwords.txt
+attacker/users.txt
+
+# Network captures
+monitor/captures/*.pcap
+monitor/captures/*.pcapng
 
 # VS Code
 .vscode/
-/monitor/captures/traffic.pcap
 
 # JetBrains
 .idea/
@@ -29,13 +36,5 @@ venv/
 # macOS
 .DS_Store
 
-# Datos generados
-data/raw/*.jsonl
-data/processed/*.csv
-
-# Capturas de red
-monitor/captures/*.pcap
-monitor/captures/*.pcapng
-
-# MongoDB local
-data/mongodb/
+#Airflow
+airflow/logs/
