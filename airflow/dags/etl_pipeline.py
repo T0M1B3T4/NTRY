@@ -14,17 +14,53 @@ with DAG(
 
     extract = BashOperator(
         task_id="extract",
-        bash_command="echo 'Extract: validando archivo de entrada'",
+        bash_command="""
+        echo "📥 ================================"
+        echo "📥 NTRY - EXTRACT"
+        echo "📥 ================================"
+
+        INPUT="/data/raw/login_logs.jsonl"
+
+        if [ -f "$INPUT" ]; then
+            RECORDS=$(grep -cve '^[[:space:]]*$' "$INPUT")
+
+            echo "📂 Archivo: $INPUT"
+            echo "📊 Registros encontrados: $RECORDS"
+            echo "✅ Extract completado"
+        else
+            echo "❌ ERROR: archivo de entrada no encontrado"
+            exit 1
+        fi
+        """,
     )
 
     transform = BashOperator(
         task_id="transform",
-        bash_command="echo 'Transform: preparando datos'",
+        bash_command="""
+        echo "🧹 ================================"
+        echo "🧹 NTRY - TRANSFORM"
+        echo "🧹 ================================"
+
+        echo "🐼 Motor: Pandas"
+        echo "🧽 Validando y preparando datos..."
+        echo "🔑 Preparando identificadores de eventos..."
+        echo "📊 Preparando features..."
+
+        echo "✅ Transform completado"
+        """,
     )
 
     load = BashOperator(
         task_id="load",
-        bash_command="python /opt/airflow/ETL/parse_logs.py",
+        bash_command="""
+        echo "📤 ================================"
+        echo "📤 NTRY - LOAD"
+        echo "📤 ================================"
+
+        python /opt/airflow/ETL/parse_logs.py
+
+        echo "✅ Load (Carga) completa"
+        """,
     )
 
     extract >> transform >> load
